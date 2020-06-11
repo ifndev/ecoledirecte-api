@@ -2,6 +2,7 @@
 :warning: EARLY WIP
 
 Unofficial API for EcoleDirecte
+
 Currently supports fetching Homeworks
 
 ## Installation:
