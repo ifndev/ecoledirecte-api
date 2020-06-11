@@ -1,2 +1,5 @@
 # Ecoledirecte API
-WIP
+/!\ EARLY WIP
+
+Usage:
+See test.js
