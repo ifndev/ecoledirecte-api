@@ -1,11 +1,15 @@
 # Ecoledirecte API
-/!\ EARLY WIP
+:warning: EARLY WIP
 
 Unofficial API for EcoleDirecte
 Currently supports fetching Homeworks
 
+## Installation:
+```
+npm install ecoledirecte-api
+```
 
-Example:
+## Example:
 ```js
 EcoleDirecte = require('ecoledirecte-api');
 ED = new EcoleDirecte("USERNAME", "PASSWORD");
