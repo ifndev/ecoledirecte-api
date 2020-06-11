@@ -1,0 +1,23 @@
+{
+  "name": "ecoledirecte-api",
+  "version": "1.0.0",
+  "description": "Unofficial API for ecoledirecte.com",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ifndev/ecoledirecte-api.git"
+  },
+  "author": "Ifndev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ifndev/ecoledirecte-api/issues"
+  },
+  "homepage": "https://github.com/ifndev/ecoledirecte-api#readme",
+  "dependencies": {
+    "html-to-text": "^5.1.1",
+    "request": "^2.88.2"
+  }
+}
