@@ -3,10 +3,57 @@ const htmlToText = require('html-to-text');
 
 module.exports = class EcoleDirecte {
 
+
+    //-------------------------------
+
     constructor(username, password) {
         this.username = username;
         this.password = password;
     }
+
+    //-------------------------------
+
+    async getHomeworks(date, options) {
+        return new Promise((resolve, reject) => {
+            this._fetch(
+                (loginInfo, infos) => {
+                    return `https://api.ecoledirecte.com/v3/Eleves/${loginInfo.shortId}/cahierdetexte/${infos.date}.awp?verbe=get`
+                },
+                { "date": date })
+                .then(raw => {
+                    switch (options?.format) {
+                        case "simplified":
+                            resolve(this._parseHomeworks(raw));
+                        case "raw":
+                            resolve(raw.data);
+                        default:
+                            resolve(this._parseHomeworksPlainText(raw));
+                    }
+                })
+                .catch(e => reject(e))
+        })
+    }
+
+    async getGrades(options) {
+        return new Promise((resolve, reject) => {
+            this._fetch(
+                (loginInfo, infos) => {
+                    return `https://api.ecoledirecte.com/v3/eleves/${loginInfo.shortId}/notes.awp?verbe=get&`
+                },
+                {})
+                .then(raw => {
+                    switch (options?.format) {
+                        case "simplified":
+                            reject("simplified mode is not supported yet for grades");
+                        default:
+                            resolve(raw.data);
+                    }
+                })
+                .catch(e => reject(e));
+        });
+    }
+
+    //-------------------------------
 
     _login() {
         return new Promise((resolve, reject) => {
@@ -48,31 +95,14 @@ module.exports = class EcoleDirecte {
         })
     }
 
-    async getHomeworks(date, options) {
-        return new Promise((resolve, reject) => {
-            this._fetchHomeworks(date)
-                .then(raw => {
-                    switch (options?.format) {
-                        case "simplified":
-                            resolve(this._parseHomeworks(raw));
-                        case "raw":
-                            resolve(raw.data);
-                        default:
-                            resolve(this._parseHomeworksPlainText(raw));
-                    }
-                })
-                .catch(e => reject(e))
-        })
-    }
-
-    _fetchHomeworks(date) {
+    _fetch(makeUrl, infos) {
         return new Promise((resolve, reject) => {
             this._login()
                 .then((loginInfo) => {
                     const options = {
-                        url: `https://api.ecoledirecte.com/v3/Eleves/${loginInfo.shortId}/cahierdetexte/${date}.awp?verbe=get`,
+                        url: makeUrl(loginInfo, infos),
                         method: 'POST',
-                        headers: { 'user-agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:77.0) Gecko/20100101 Firefox/77.0' }, //User agent has to be specified AND valid for the 
+                        headers: { 'user-agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:77.0) Gecko/20100101 Firefox/77.0' }, //User agent has to be specified AND valid
                         body: `data={ "token": "${loginInfo.token}" }`
                     };
 
@@ -124,6 +154,5 @@ module.exports = class EcoleDirecte {
         });
         return disciplines;
     }
-
 }
 
