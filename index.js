@@ -116,7 +116,7 @@ module.exports = class EcoleDirecte {
             disciplines.push({
                 "disciplineCode": discipline.codeMatiere,
                 "disciplineName": discipline.matiere,
-                "professorName": discipline.nomProf,
+                "teacherName": discipline.nomProf,
                 "assignement": Buffer.from(discipline.aFaire.contenu, 'base64').toString('utf8'),
                 "onlineFullfillement": discipline.aFaire.rendreEnLigne,
 
