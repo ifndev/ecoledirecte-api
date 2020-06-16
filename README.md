@@ -1,7 +1,7 @@
 # Ecoledirecte API
 :warning: EARLY WIP
 
-Unofficial API for EcoleDirecte
+Unofficial API Client for EcoleDirecte
 
 Currently supports fetching Homeworks
 
