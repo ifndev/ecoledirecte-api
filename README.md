@@ -3,7 +3,7 @@
 
 Unofficial API Client for EcoleDirecte
 
-Currently supports fetching Homeworks
+Currently supports fetching Homeworks and Grades (raw)
 
 ## Installation:
 ```
