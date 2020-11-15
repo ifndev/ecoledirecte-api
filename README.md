@@ -18,5 +18,5 @@ options = {
     "format": "raw" // raw, simplified, plaintext. default: plaintext
 }
 ED.getHomeworks("2020-06-12", options) //only the first argument (date) is required
-    .then(hw => console.log(hw)); 
+    .then(hw => console.log(hw)).catch(e => console.error); 
 ```
