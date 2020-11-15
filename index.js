@@ -1,7 +1,7 @@
-import request from 'request';
-import { fromString } from 'html-to-text';
+var request = require('request');
+const htmlToText = require('html-to-text');
 
-export default class EcoleDirecte {
+module.exports = class EcoleDirecte {
 
 
     //-------------------------------
@@ -132,7 +132,7 @@ export default class EcoleDirecte {
                 "disciplineCode": discipline.codeMatiere,
                 "disciplineName": discipline.matiere,
                 "professorName": discipline.nomProf,
-                "assignement": fromString(Buffer.from(discipline.aFaire.contenu, 'base64').toString('utf8'), { hideLinkHrefIfSameAsText: true }),
+                "assignement": htmlToText.fromString(Buffer.from(discipline.aFaire.contenu, 'base64').toString('utf8'), { hideLinkHrefIfSameAsText: true }),
                 "onlineFullfillement": discipline.aFaire.rendreEnLigne,
 
             });

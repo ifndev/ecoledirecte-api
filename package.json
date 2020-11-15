@@ -1,7 +1,6 @@
 {
   "name": "ecoledirecte-api",
   "version": "1.0.3",
-  "type": "module",
   "description": "Unofficial API for ecoledirecte.com",
   "main": "index.js",
   "scripts": {

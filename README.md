@@ -12,10 +12,10 @@ npm install ecoledirecte-api
 
 ## Example:
 ```js
-import EcoleDirecte from './index.js'
+EcoleDirecte = require('ecoledirecte-api');
 
-let ED = new EcoleDirecte("EDELEVE", "0"); // Login, Password
-let options = {
+ED = new EcoleDirecte("EDELEVE", "0");
+options = {
 	    "format": "raw" // raw, simplified, plaintext. default: plaintext
 }
 
